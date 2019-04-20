@@ -7,6 +7,7 @@ import { BoardComponent } from './components/board/board.component';
 import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './components/main/main.component';
 import { ResultComponent } from './components/result/result.component';
+import { NotificationModule } from './notification/notification.module';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { ResultComponent } from './components/result/result.component';
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        NotificationModule
     ],
     providers: [],
     bootstrap: [AppComponent]

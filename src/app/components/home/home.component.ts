@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { SAVED_GAME_ID } from 'src/app/functions/utils';
+import { NotificationService } from 'src/app/notification/services/notification.service';
 import { GameService } from 'src/app/services/game.service';
 
 
@@ -16,9 +16,8 @@ export class HomeComponent implements OnInit {
     @Output() resetGame = new EventEmitter();
     @Output() loadGame = new EventEmitter();
 
-    public message$ = new BehaviorSubject('');
-
-    constructor(private gameService: GameService) { }
+    constructor(private gameService: GameService,
+        private notificationService: NotificationService) { }
 
     ngOnInit() {
     }
@@ -27,20 +26,9 @@ export class HomeComponent implements OnInit {
         this.newGame.emit();
     }
 
-    private closeMessage() {
-        this.message$.next('');
-    }
-
-    private showMessage(message: string) {
-        this.message$.next(message);
-        setTimeout(() => {
-            this.closeMessage();
-        }, 3000);
-    }
-
     public loadSavedGame() {
         if (!this.gameService.isSavedGame()) {
-            this.showMessage('No saved game!!!');
+            this.notificationService.show('No saved game!!!');
             return;
         }
         this.loadGame.emit(SAVED_GAME_ID);
@@ -48,7 +36,7 @@ export class HomeComponent implements OnInit {
 
     public resetGamestate() {
         this.resetGame.emit();
-        this.showMessage('Game reset done!!!');
+        this.notificationService.show('Game reset done!!!');
     }
 
 }

@@ -1,4 +1,5 @@
 <div class="main">
+    <app-notification></app-notification>
     <div class="high-score"> High score: {{highScore$ | async}}</div>
     <div>
         <app-home *ngIf="!gameInProgress" (newGame)="startNewGame()" (resetGame)="resetGame()"
