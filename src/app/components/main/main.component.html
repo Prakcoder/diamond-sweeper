@@ -1,1 +1,2 @@
-<app-board></app-board>
+<app-board [gameSize]="gameSize" (gameOver)="setGameOver($event)"></app-board>
+<app-result *ngIf="isGameOver" [gameSize]="gameSize" [touchedCordsCount]="touchedCordsCount"></app-result>

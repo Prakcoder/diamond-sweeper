@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { areSameCoordinates, DiamondCord, findDirection, getDistance } from 'src/app/functions/utils';
 
-const boardSize = 8;
 @Component({
     selector: 'app-board',
     templateUrl: './board.component.html',
@@ -9,19 +8,25 @@ const boardSize = 8;
 })
 export class BoardComponent implements OnInit {
 
-    public indexArray = getIndexArray();
+    public indexArray = [];
     public diamondArray: DiamondCord[] = [[1, 4], [1, 3], [0, 2], [4, 0], [3, 3], [5, 0], [3, 4], [5, 1]];
     // We are using sparse matrix to store the coordinates of each diamond.
     // For Board size of n*n cells we need only n coordinates to store
-
     public touchedCords: DiamondCord[] = [];
-    private hiddenDiamond = boardSize;
+    private hiddenDiamond;
+
     private lastClicked: DiamondCord = undefined;
     public arrowDirection: string = ''; // Will be used as class in html
 
-    constructor() { }
+    @Input() private gameSize: number;
+    @Output() private gameOver: EventEmitter<number> = new EventEmitter();
+
+    constructor() {
+    }
 
     ngOnInit() {
+        this.indexArray = getIndexArray(this.gameSize);
+        this.hiddenDiamond = this.gameSize;
     }
 
     public hasDiamond(cord: DiamondCord) {
@@ -33,23 +38,22 @@ export class BoardComponent implements OnInit {
             return;
         }
         this.lastClicked = cord;
-        if (this.hasDiamond(cord)) {
-            --this.hiddenDiamond;
-        }
         this.getDirection(cord);
         this.touchedCords.push(cord);
+        if (this.hasDiamond(cord)) {
+            this.updateHiddenDiamond();
+        }
+    }
+
+    private updateHiddenDiamond() {
+        --this.hiddenDiamond;
+        if (this.hiddenDiamond === 0) {
+            this.gameOver.emit(this.touchedCords.length);
+        }
     }
 
     public isTouched(cord: DiamondCord) {
         return !!this.touchedCords.find(t => areSameCoordinates(t, cord));
-    }
-
-    public isGameOver() {
-        return this.hiddenDiamond === 0;
-    }
-
-    public getGameScore() {
-        return (boardSize * boardSize) - this.touchedCords.length;
     }
 
     public isLastClicked(cord: DiamondCord) {
@@ -86,9 +90,10 @@ export class BoardComponent implements OnInit {
     }
 }
 
-function getIndexArray() {
+
+function getIndexArray(gameSize: number) {
     const arr: number[] = [];
-    for (let i = 0; i < boardSize; ++i) {
+    for (let i = 0; i < gameSize; ++i) {
         arr.push(i);
     }
     return arr;

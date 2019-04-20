@@ -63,3 +63,4 @@ export function findDirection(clickedCord: DiamondCord, nearestDiamond: DiamondC
 }
 
 export type DiamondCord = [number, number];
+export const BOARD_SIZE = 8;
