@@ -1,8 +1,13 @@
 <table>
     <tr *ngFor="let x of indexArray">
-        <td *ngFor="let y of indexArray">
-            <span *ngIf='hasDiamond(x,y); else showUnknown'>D</span>
-            <ng-template #showUnknown>
+        <td *ngFor="let y of indexArray" (click)="setClicked([x,y])">
+            <span *ngIf="isTouched([x,y]); else showUnTouched">
+                <span *ngIf='hasDiamond([x,y]); else showUnknown'>D</span>
+                <ng-template #showUnknown>
+                    <span> </span>
+                </ng-template>
+            </span>
+            <ng-template #showUnTouched>
                 <span>?</span>
             </ng-template>
         </td>

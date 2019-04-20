@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { comparePairs, Pair } from '../../functions/utils';
+import { comparePairs, Pair } from 'src/app/functions/utils';
 
 const boardSize = 8;
 @Component({
@@ -14,14 +13,23 @@ export class BoardComponent implements OnInit {
     public diamondArray: Pair[] = [[1, 4], [1, 3], [0, 2], [4, 0], [3, 3], [5, 0], [3, 4], [5, 1]];
     // We are using sparse matrix to store the coordinates of each diamond.
     // For Board size of n*n cells we need only n coordinates to store
+    public touchedCords: Pair[] = [];
 
     constructor() { }
 
     ngOnInit() {
     }
 
-    public hasDiamond(xCord: number, yCord: number) {
-        return !!this.diamondArray.find(dia => comparePairs(dia, [xCord, yCord]));
+    public hasDiamond(cord: Pair) {
+        return !!this.diamondArray.find(dia => comparePairs(dia, cord));
+    }
+
+    public setClicked(cord: Pair) {
+        this.touchedCords.push(cord);
+    }
+
+    public isTouched(cord: Pair) {
+        return !!this.touchedCords.find(t => comparePairs(t, cord));
     }
 }
 
