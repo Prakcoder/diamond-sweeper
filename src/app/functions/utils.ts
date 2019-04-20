@@ -3,11 +3,11 @@ function getRandomNumber(max: number) {
 }
 
 function* pairGenerator(max: number) {
-    yield <Pair>[getRandomNumber(max), getRandomNumber(max)];
+    yield <DiamondCord>[getRandomNumber(max), getRandomNumber(max)];
 }
 
 function generateUniquePairs(size: number) {
-    const pairs: Pair[] = [];
+    const pairs: DiamondCord[] = [];
     while (pairs.length !== size) {
         const newPair = pairGenerator(size).next().value;
         if (!pairs.find(pair => comparePairs(pair, newPair))) {
@@ -21,8 +21,10 @@ export function comparePairs(pair: [number, number], newPair: [number, number]):
     return getPairKey(pair) === getPairKey(newPair);
 }
 
-function getPairKey(pair: Pair) {
+function getPairKey(pair: DiamondCord) {
     return pair[0] + '-' + pair[1];
 }
 
-export type Pair = [number, number];
+
+
+export type DiamondCord = [number, number];
