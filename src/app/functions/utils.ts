@@ -6,7 +6,7 @@ function* pairGenerator(max: number) {
     yield <DiamondCord>[getRandomNumber(max), getRandomNumber(max)];
 }
 
-function generateUniquePairs(size: number) {
+export function generateUniquePairs(size: number) {
     const pairs: DiamondCord[] = [];
     while (pairs.length !== size) {
         const newPair = pairGenerator(size).next().value;
@@ -14,7 +14,20 @@ function generateUniquePairs(size: number) {
             pairs.push(newPair);
         }
     }
-    return pairs;
+    return sortPair(pairs);
+}
+
+function sortPair(pairs: DiamondCord[]) {
+    const uniqueXcords = Array.from(new Set(pairs.map(p => p[0])));
+    uniqueXcords.sort();
+    const sortedPairs = uniqueXcords.map(ux => {
+        const allYCords = pairs.filter(p => p[0] === ux).map(p => p[1]);
+        allYCords.sort();
+        return allYCords.map(y => <DiamondCord>[ux, y]);
+    });
+
+    return [].concat.apply([], [...sortedPairs]);
+
 }
 
 export function areSameCoordinates(pair: [number, number], newPair: [number, number]): boolean {

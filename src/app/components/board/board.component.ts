@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { areSameCoordinates, DiamondCord, findDirection, getDistance } from 'src/app/functions/utils';
+import { areSameCoordinates, DiamondCord, findDirection, generateUniquePairs, getDistance } from 'src/app/functions/utils';
 import { GameService } from 'src/app/services/game.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { GameService } from 'src/app/services/game.service';
 export class BoardComponent implements OnInit {
 
     public indexArray = [];
-    public diamondArray: DiamondCord[] = [[1, 4], [1, 3], [0, 2], [4, 0], [3, 3], [5, 0], [3, 4], [5, 1]];
+    public diamondArray: DiamondCord[] = [];
     // We are using sparse matrix to store the coordinates of each diamond.
     // For Board size of n*n cells we need only n coordinates to store
     public touchedCords: DiamondCord[] = [];
@@ -35,6 +35,7 @@ export class BoardComponent implements OnInit {
             this.hiddenDiamond = computeHiddenDiamond(this.diamondArray, this.touchedCords, this.gameSize);
         } else {
             this.hiddenDiamond = this.gameSize;
+            this.diamondArray = generateUniquePairs(this.gameSize);
         }
     }
 
