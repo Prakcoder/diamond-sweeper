@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { areSameCoordinates, DiamondCord, findDirection, generateUniquePairs, getDistance } from 'src/app/functions/utils';
-import { GameService } from 'src/app/services/game.service';
+
+import { areSameCoordinates, DiamondCord, findDirection, generateUniquePairs, getDistance } from '../../functions/utils';
+import { GameService } from '../../services/game.service';
 
 @Component({
     selector: 'app-board',

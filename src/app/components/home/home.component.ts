@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { SAVED_GAME_ID } from 'src/app/functions/utils';
-import { NotificationService } from 'src/app/notification/services/notification.service';
-import { GameService } from 'src/app/services/game.service';
+
+import { SAVED_GAME_ID } from '../../functions/utils';
+import { NotificationService } from '../../notification/services/notification.service';
+import { GameService } from '../../services/game.service';
 
 
 @Component({
