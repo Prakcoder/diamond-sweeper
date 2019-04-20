@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './components/main/main.component';
 import { BoardComponent } from './components/board/board.component';
+import { HomeComponent } from './components/home/home.component';
+import { MainComponent } from './components/main/main.component';
 import { ResultComponent } from './components/result/result.component';
 
 @NgModule({
@@ -12,7 +13,8 @@ import { ResultComponent } from './components/result/result.component';
         AppComponent,
         MainComponent,
         BoardComponent,
-        ResultComponent
+        ResultComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,
