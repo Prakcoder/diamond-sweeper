@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { areSameCoordinates, DiamondCord, findDirection, getDistance } from 'src/app/functions/utils';
+import { GameService } from 'src/app/services/game.service';
 
 @Component({
     selector: 'app-board',
@@ -21,7 +22,7 @@ export class BoardComponent implements OnInit {
     @Input() private gameSize: number;
     @Output() private gameOver: EventEmitter<number> = new EventEmitter();
 
-    constructor() {
+    constructor(private gameService: GameService) {
     }
 
     ngOnInit() {
@@ -87,6 +88,18 @@ export class BoardComponent implements OnInit {
             }
         });
         return this.diamondArray[nearest];
+    }
+
+    public saveGame() {
+        this.gameService.saveGame();
+    }
+
+    public closeGame() {
+        this.gameOver.emit();
+    }
+
+    public restartGame() {
+
     }
 }
 

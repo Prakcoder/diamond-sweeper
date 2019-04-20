@@ -1,3 +1,8 @@
+<div>
+    <div (click)="restartGame()">Restart</div>
+    <div (click)="saveGame()">Save</div>
+    <div (click)="closeGame()">Close</div>
+</div>
 <table>
     <tr *ngFor="let x of indexArray">
         <td *ngFor="let y of indexArray" (click)="setClicked([x,y])">
