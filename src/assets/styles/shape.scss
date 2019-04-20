@@ -1,0 +1,29 @@
+.diamond {
+    background-image: url("../images/diamond.png");
+    background-color: #aaaaaa;
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+}
+
+.empty {
+    background-color: #dddddd;
+    display: flex;
+    height: 50px;
+    width: 50px;
+}
+
+.unknown {
+    background-image: url("../images/question.png");
+    background-color: #dddddd;
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+}
+
+i {
+    background-image: url("../images/arrow.png");
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+}
