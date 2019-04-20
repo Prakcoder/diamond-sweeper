@@ -14,12 +14,13 @@ export class BoardComponent implements OnInit {
     // We are using sparse matrix to store the coordinates of each diamond.
     // For Board size of n*n cells we need only n coordinates to store
     public touchedCords: DiamondCord[] = [];
-    private hiddenDiamond;
+    private hiddenDiamond: number;
 
     private lastClicked: DiamondCord = undefined;
     public arrowDirection: string = ''; // Will be used as class in html
 
     @Input() private gameSize: number;
+    @Input() private gameId: string;
     @Output() private gameOver: EventEmitter<number> = new EventEmitter();
 
     constructor(private gameService: GameService) {
@@ -27,7 +28,14 @@ export class BoardComponent implements OnInit {
 
     ngOnInit() {
         this.indexArray = getIndexArray(this.gameSize);
-        this.hiddenDiamond = this.gameSize;
+        if (!!this.gameId) {
+            const data = this.gameService.loadSavedGame(this.gameId);
+            this.diamondArray = data.diamondArray;
+            this.touchedCords = data.touched;
+            this.hiddenDiamond = computeHiddenDiamond(this.diamondArray, this.touchedCords, this.gameSize);
+        } else {
+            this.hiddenDiamond = this.gameSize;
+        }
     }
 
     public hasDiamond(cord: DiamondCord) {
@@ -91,15 +99,23 @@ export class BoardComponent implements OnInit {
     }
 
     public saveGame() {
-        this.gameService.saveGame();
+        this.gameService.saveGame(this.diamondArray, this.touchedCords);
     }
 
     public closeGame() {
+        this.resetGame();
         this.gameOver.emit();
     }
 
     public restartGame() {
+        this.resetGame();
+    }
 
+    private resetGame() {
+        this.touchedCords = [];
+        this.hiddenDiamond = this.gameSize;
+        this.lastClicked = undefined;
+        this.arrowDirection = '';
     }
 }
 
@@ -110,4 +126,9 @@ function getIndexArray(gameSize: number) {
         arr.push(i);
     }
     return arr;
+}
+
+function computeHiddenDiamond(diamondArray: DiamondCord[], touched: DiamondCord[], gameSize: number) {
+    const visibleDiamond = diamondArray.filter(d => touched.find(t => areSameCoordinates(d, t)));
+    return gameSize - visibleDiamond.length;
 }

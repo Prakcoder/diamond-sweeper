@@ -13,6 +13,7 @@ export class MainComponent implements OnInit {
     public isGameOver: boolean = false;
     public touchedCordsCount: number;
     public gameInProgress: boolean = false;
+    public gameId: string = undefined;
 
     constructor() { }
 
@@ -29,7 +30,16 @@ export class MainComponent implements OnInit {
     }
 
     public startNewGame() {
+        this.gameId = undefined;
         this.gameInProgress = true;
     }
 
+    public resetGame() {
+
+    }
+
+    public loadGame(key: string) {
+        this.gameId = key;
+        this.gameInProgress = true;
+    }
 }

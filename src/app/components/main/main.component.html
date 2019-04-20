@@ -1,3 +1,4 @@
-<app-home *ngIf="!gameInProgress" (click)="startNewGame()"></app-home>
-<app-board *ngIf="gameInProgress" [gameSize]="gameSize" (gameOver)="setGameOver($event)"></app-board>
+<app-home *ngIf="!gameInProgress" (newGame)="startNewGame()" (resetGame)="resetGame()" (loadGame)="loadGame($event)">
+</app-home>
+<app-board *ngIf="gameInProgress" [gameId]="gameId" [gameSize]="gameSize" (gameOver)="setGameOver($event)"></app-board>
 <app-result *ngIf="isGameOver" [gameSize]="gameSize" [touchedCordsCount]="touchedCordsCount"></app-result>
