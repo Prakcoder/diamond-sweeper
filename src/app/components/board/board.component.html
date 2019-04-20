@@ -1,19 +1,19 @@
 <table>
     <tr *ngFor="let x of indexArray">
         <td *ngFor="let y of indexArray" (click)="setClicked([x,y])">
-            <span *ngIf="isTouched([x,y]); else showUnTouched">
-                <span *ngIf='hasDiamond([x,y]); else showUnknown'>D</span>
+            <div *ngIf="isTouched([x,y]); else showUnTouched">
+                <div *ngIf='hasDiamond([x,y]); else showUnknown' class="diamond"></div>
                 <ng-template #showUnknown>
-                    <span> </span>
+                    <div class="empty"></div>
                 </ng-template>
-            </span>
+            </div>
             <ng-template #showUnTouched>
-                <span>?</span>
+                <div class="unknown"></div>
             </ng-template>
         </td>
     </tr>
 </table>
-<span *ngIf="isGameOver()">
+<div *ngIf="isGameOver()">
     You won!!!<br>
     Your score: {{getGameScore()}}
-</span>
+</div>

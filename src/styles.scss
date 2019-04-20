@@ -9,3 +9,26 @@ body {
     width: 100%;
     margin: 2vh;
 }
+
+.diamond {
+    background-image: url("./assets/images/diamond.png");
+    background-color: #aaaaaa;
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+}
+
+.empty {
+    background-color: #dddddd;
+    display: flex;
+    height: 50px;
+    width: 50px;
+}
+
+.unknown {
+    background-image: url("./assets/images/question.png");
+    background-color: #dddddd;
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+}
