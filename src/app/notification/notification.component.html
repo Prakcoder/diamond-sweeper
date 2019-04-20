@@ -1,3 +1,7 @@
-<p>
-  notification works!
-</p>
+<div class="msg" *ngIf="message$ | async; let message">
+    <div class="msg-box">
+        <div class="message">
+            {{message}}
+        </div>
+    </div>
+</div>

@@ -9,30 +9,3 @@ body {
     width: 100%;
     margin: 2vh;
 }
-
-.msg {
-    position: absolute;
-    top: 40%;
-    min-width: 22rem;
-    right: 0;
-    margin-right: 3rem;
-    top: 0;
-    margin-top: -2rem;
-    @media only screen and (max-width: 600px) {
-        min-width: 13rem;
-        margin-right: 1rem;
-        margin-top: -1rem;
-    }
-}
-
-.msg-box {
-    border-radius: 15px 0 0 15px;
-    background-color: lightgray;
-    padding: 5px;
-    font-size: 1rem;
-    border-bottom: 3px solid red;
-}
-
-.message {
-    font-weight: 600;
-}
