@@ -1,5 +1,9 @@
 <div>
-    New game<br>
-    Load saved game<br>
-    Reset
+    <div (click)="startNewGame()">New game</div>
+    <div (click)="loadSavedGame()">Load saved game</div>
+    <div (click)="resetGamestate()">Reset</div>
+</div>
+
+<div *ngIf="showNoGameSaved">
+    No Game Saved
 </div>
