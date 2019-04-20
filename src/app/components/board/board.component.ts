@@ -99,7 +99,7 @@ export class BoardComponent implements OnInit {
                 return;
             }
             const dis = getDistance(currentDiamond, clickedCord);
-            if (!nearest || dis < distance) {
+            if (nearest === undefined || dis < distance) {
                 nearest = ind;
                 distance = dis;
             }
