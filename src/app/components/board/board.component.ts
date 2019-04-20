@@ -42,6 +42,11 @@ export class BoardComponent implements OnInit {
         return !!this.diamondArray.find(dia => areSameCoordinates(dia, cord));
     }
 
+    public doNotAllowSave() {
+        // No need to show save button if game just started or finished
+        return this.hiddenDiamond === this.gameSize || this.hiddenDiamond === 0;
+    }
+
     public setClicked(cord: DiamondCord) {
         if (this.isTouched(cord)) {
             return;
@@ -102,6 +107,9 @@ export class BoardComponent implements OnInit {
     }
 
     public saveGame() {
+        if (this.doNotAllowSave()) {
+            return;
+        }
         this.gameService.saveGame(this.diamondArray, this.touchedCords);
     }
 

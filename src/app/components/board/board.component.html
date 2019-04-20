@@ -8,7 +8,7 @@
                 <td>
                     <div class="btn-grp">
                         <div class="btn" (click)="restartGame()">Restart</div>
-                        <div class="btn btn-center" (click)="saveGame()">Save</div>
+                        <div class="btn btn-center" [class.disabled]="doNotAllowSave()" (click)="saveGame()">Save</div>
                         <div class="btn" (click)="closeGame()">Close</div>
                     </div>
                 </td>

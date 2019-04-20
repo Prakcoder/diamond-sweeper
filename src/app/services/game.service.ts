@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 import { DiamondCord, SAVED_GAME_ID } from '../functions/utils';
-import { BehaviorSubject } from 'rxjs';
 
 const HIGH_SCORE = 'diamond-high-score';
 
@@ -29,6 +29,7 @@ export class GameService {
     }
 
     public loadGameHighScore() {
+        // We are storing game high score in cache so that we can show it on next reload
         const highScore = localStorage.getItem(HIGH_SCORE);
         if (!!highScore) {
             this.highScore$.next(+highScore);
