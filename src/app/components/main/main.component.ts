@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { BOARD_SIZE } from 'src/app/functions/utils';
+import { GameService } from 'src/app/services/game.service';
 
-import { BOARD_SIZE } from '../../functions/utils';
-import { GameService } from '../../services/game.service';
 
 @Component({
     selector: 'app-main',
@@ -47,5 +47,11 @@ export class MainComponent implements OnInit {
     public loadGame(key: string) {
         this.gameId = key;
         this.gameInProgress = true;
+    }
+
+    public showMenu() {
+        this.gameId = undefined;
+        this.gameInProgress = undefined;
+        this.isGameOver = undefined;
     }
 }

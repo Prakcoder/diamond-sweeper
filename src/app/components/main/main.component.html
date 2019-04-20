@@ -7,6 +7,7 @@
         </app-home>
         <app-board *ngIf="gameInProgress" [gameId]="gameId" [gameSize]="gameSize" (gameOver)="setGameOver($event)">
         </app-board>
-        <app-result *ngIf="isGameOver" [gameSize]="gameSize" [touchedCordsCount]="touchedCordsCount"></app-result>
+        <app-result *ngIf="isGameOver" [gameSize]="gameSize" [touchedCordsCount]="touchedCordsCount"
+            (laodMenu)="showMenu()"></app-result>
     </div>
 </div>

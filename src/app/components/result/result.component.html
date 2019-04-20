@@ -1,6 +1,6 @@
-<div class="result-container">
+<div class="result-container" (click)="clickedOutOfBox()">
     <div class="result">
-        <div class="box">
+        <div class="box" (click)="boxClicked($event)">
             You won!!!<br>
             Your score: {{getGameScore()}}
         </div>

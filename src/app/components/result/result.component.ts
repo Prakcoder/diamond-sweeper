@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GameService } from 'src/app/services/game.service';
 
 @Component({
@@ -10,6 +10,7 @@ export class ResultComponent implements OnInit {
 
     @Input() touchedCordsCount: number;
     @Input() gameSize: number;
+    @Output() laodMenu = new EventEmitter();
 
     constructor(private gameService: GameService) { }
 
@@ -22,4 +23,11 @@ export class ResultComponent implements OnInit {
         return score;
     }
 
+    public boxClicked($event: MouseEvent) {
+        $event.stopPropagation();
+    }
+
+    public clickedOutOfBox() {
+        this.laodMenu.emit();
+    }
 }
