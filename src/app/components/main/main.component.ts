@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { BOARD_SIZE } from '../../functions/utils';
+import { GameService } from '../../services/game.service';
 
 @Component({
     selector: 'app-main',
     templateUrl: './main.component.html',
-    styleUrls: ['./main.component.scss']
+    styleUrls: ['./main.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainComponent implements OnInit {
 
@@ -14,10 +16,14 @@ export class MainComponent implements OnInit {
     public touchedCordsCount: number;
     public gameInProgress: boolean = false;
     public gameId: string = undefined;
+    public highScore$ = this.gameService.highScore$;
 
-    constructor() { }
+    constructor(private gameService: GameService) {
+
+    }
 
     ngOnInit() {
+        this.gameService.loadGameHighScore();
     }
 
     public setGameOver($event: number) {
@@ -35,7 +41,7 @@ export class MainComponent implements OnInit {
     }
 
     public resetGame() {
-
+        this.gameService.resetGame();
     }
 
     public loadGame(key: string) {

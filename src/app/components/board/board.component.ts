@@ -66,6 +66,9 @@ export class BoardComponent implements OnInit {
     }
 
     public isLastClicked(cord: DiamondCord) {
+        if (!this.lastClicked) {
+            return false;
+        }
         return areSameCoordinates(cord, this.lastClicked);
     }
 
