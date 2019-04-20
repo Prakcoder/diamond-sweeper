@@ -1,3 +1,10 @@
-<p>
-  board works!
-</p>
+<table>
+    <tr *ngFor="let x of indexArray">
+        <td *ngFor="let y of indexArray">
+            <span *ngIf='hasDiamond(x,y); else showUnknown'>D</span>
+            <ng-template #showUnknown>
+                <span>?</span>
+            </ng-template>
+        </td>
+    </tr>
+</table>
