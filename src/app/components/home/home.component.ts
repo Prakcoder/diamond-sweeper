@@ -32,6 +32,10 @@ export class HomeComponent implements OnInit {
     public loadSavedGame() {
         if (!this.gameService.isSavedGame()) {
             this.showNoGameSaved = true;
+            setTimeout(() => {
+                this.showNoGameSaved = false;
+            }, 0);
+
             return;
         }
         this.loadGame.emit(SAVED_GAME_ID);

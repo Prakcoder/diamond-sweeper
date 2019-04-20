@@ -9,3 +9,24 @@ body {
     width: 100%;
     margin: 2vh;
 }
+
+.msg {
+    position: absolute;
+    top: 40%;
+    width: 74%;
+    right: 0;
+}
+
+.msg-box {
+    border-radius: 9px;
+    background-color: lightgray;
+    padding: 5px;
+    font-size: 23px;
+    margin: 0;
+    max-width: 57%;
+    border-bottom: 3px solid red;
+}
+
+.message {
+    font-weight: 600;
+}

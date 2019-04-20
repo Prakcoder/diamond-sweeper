@@ -1,9 +1,13 @@
-<div>
-    <div (click)="startNewGame()">New game</div>
-    <div (click)="loadSavedGame()">Load saved game</div>
-    <div (click)="resetGamestate()">Reset</div>
-</div>
+<div class="home">
+    <div class="menu-item" (click)="startNewGame()">New game</div>
+    <div class="menu-item" (click)="loadSavedGame()">Load saved game</div>
+    <div class="menu-item" (click)="resetGamestate()">Reset</div>
 
-<div *ngIf="showNoGameSaved">
-    No Game Saved
+    <div class="msg">
+        <div class="msg-box" *ngIf="showNoGameSaved">
+            <div class="message">
+                No Game Saved!!!
+            </div>
+        </div>
+    </div>
 </div>
