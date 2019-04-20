@@ -4,7 +4,9 @@
             <div *ngIf="isTouched([x,y]); else showUnTouched">
                 <div *ngIf='hasDiamond([x,y]); else showUnknown' class="diamond"></div>
                 <ng-template #showUnknown>
-                    <div class="empty"></div>
+                    <div class="empty">
+                        <i *ngIf="isLastClicked([x,y])" class="{{arrowDirection}}"></i>
+                    </div>
                 </ng-template>
             </div>
             <ng-template #showUnTouched>
