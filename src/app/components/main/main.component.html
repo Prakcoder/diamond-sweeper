@@ -1,8 +1,11 @@
-<div class="high-score">
-    High score: {{highScore$ | async}}
+<div class="main">
+    <div class="high-score"> High score: {{highScore$ | async}}</div>
+    <div>
+        <app-home *ngIf="!gameInProgress" (newGame)="startNewGame()" (resetGame)="resetGame()"
+            (loadGame)="loadGame($event)">
+        </app-home>
+        <app-board *ngIf="gameInProgress" [gameId]="gameId" [gameSize]="gameSize" (gameOver)="setGameOver($event)">
+        </app-board>
+        <app-result *ngIf="isGameOver" [gameSize]="gameSize" [touchedCordsCount]="touchedCordsCount"></app-result>
+    </div>
 </div>
-
-<app-home *ngIf="!gameInProgress" (newGame)="startNewGame()" (resetGame)="resetGame()" (loadGame)="loadGame($event)">
-</app-home>
-<app-board *ngIf="gameInProgress" [gameId]="gameId" [gameSize]="gameSize" (gameOver)="setGameOver($event)"></app-board>
-<app-result *ngIf="isGameOver" [gameSize]="gameSize" [touchedCordsCount]="touchedCordsCount"></app-result>
