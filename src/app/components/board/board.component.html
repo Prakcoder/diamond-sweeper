@@ -13,3 +13,7 @@
         </td>
     </tr>
 </table>
+<span *ngIf="isGameOver()">
+    You won!!!<br>
+    Your score: {{getGameScore()}}
+</span>

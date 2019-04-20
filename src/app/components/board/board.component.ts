@@ -14,6 +14,7 @@ export class BoardComponent implements OnInit {
     // We are using sparse matrix to store the coordinates of each diamond.
     // For Board size of n*n cells we need only n coordinates to store
     public touchedCords: Pair[] = [];
+    private hiddenDiamond = boardSize;
 
     constructor() { }
 
@@ -25,11 +26,22 @@ export class BoardComponent implements OnInit {
     }
 
     public setClicked(cord: Pair) {
+        if (this.hasDiamond(cord)) {
+            --this.hiddenDiamond;
+        }
         this.touchedCords.push(cord);
     }
 
     public isTouched(cord: Pair) {
         return !!this.touchedCords.find(t => comparePairs(t, cord));
+    }
+
+    public isGameOver() {
+        return this.hiddenDiamond === 0;
+    }
+
+    public getGameScore() {
+        return (boardSize * boardSize) - this.touchedCords.length;
     }
 }
 
