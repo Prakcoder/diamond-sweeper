@@ -1,22 +1,33 @@
-<div>
-    <div (click)="restartGame()">Restart</div>
-    <div (click)="saveGame()">Save</div>
-    <div (click)="closeGame()">Close</div>
-</div>
-<table>
-    <tr *ngFor="let x of indexArray">
-        <td *ngFor="let y of indexArray" (click)="setClicked([x,y])">
-            <div *ngIf="isTouched([x,y]); else showUnTouched">
-                <div *ngIf='hasDiamond([x,y]); else showUnknown' class="diamond"></div>
-                <ng-template #showUnknown>
-                    <div class="empty">
-                        <i *ngIf="isLastClicked([x,y])" class="{{arrowDirection}}"></i>
+<div class="full">
+    <div class="board">
+        <table class="table">
+            <tr>
+                <td>
+                    <div class="count">Remaining: {{hiddenDiamond}}</div>
+                </td>
+                <td>
+                    <div class="btn-grp">
+                        <div class="btn" (click)="restartGame()">Restart</div>
+                        <div class="btn btn-center" (click)="saveGame()">Save</div>
+                        <div class="btn" (click)="closeGame()">Close</div>
                     </div>
-                </ng-template>
-            </div>
-            <ng-template #showUnTouched>
-                <div class="unknown"></div>
-            </ng-template>
-        </td>
-    </tr>
-</table>
+                </td>
+            </tr>
+            <tr class="row" *ngFor="let x of indexArray">
+                <td class="cell" *ngFor="let y of indexArray" (click)="setClicked([x,y])">
+
+                    <div *ngIf="!isTouched([x,y]); else openCell" class="unknown"></div>
+                    <ng-template #openCell>
+                        <div *ngIf="hasDiamond([x,y]); else showHint" class="diamond"></div>
+                        <ng-template #showHint>
+                            <div class="empty">
+                                <i *ngIf="isLastClicked([x,y])" class="{{arrowDirection}}"></i>
+                            </div>
+                        </ng-template>
+                    </ng-template>
+                </td>
+                <br>
+            </tr>
+        </table>
+    </div>
+</div>

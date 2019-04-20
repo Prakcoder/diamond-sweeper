@@ -14,7 +14,7 @@ export class BoardComponent implements OnInit {
     // We are using sparse matrix to store the coordinates of each diamond.
     // For Board size of n*n cells we need only n coordinates to store
     public touchedCords: DiamondCord[] = [];
-    private hiddenDiamond: number;
+    public hiddenDiamond: number;
 
     private lastClicked: DiamondCord = undefined;
     public arrowDirection: string = ''; // Will be used as class in html

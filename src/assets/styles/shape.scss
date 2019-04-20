@@ -1,29 +1,52 @@
+$cellSize: 3rem;
+$cellSize-sm: 2rem;
+
 .diamond {
     background-image: url("../images/diamond.png");
     background-color: #aaaaaa;
     background-size: cover;
-    height: 50px;
-    width: 50px;
+    height: $cellSize;
+    width: $cellSize;
+
+    @media screen and (max-width: 600px) {
+        height: $cellSize-sm;
+        width: $cellSize-sm;
+    }
 }
 
 .empty {
     background-color: #dddddd;
     display: flex;
-    height: 50px;
-    width: 50px;
+    height: $cellSize;
+    width: $cellSize;
+
+    @media screen and (max-width: 600px) {
+        height: $cellSize-sm;
+        width: $cellSize-sm;
+    }
 }
 
 .unknown {
     background-image: url("../images/question.png");
     background-color: #dddddd;
     background-size: cover;
-    height: 50px;
-    width: 50px;
+    height: $cellSize;
+    width: $cellSize;
+
+    @media screen and (max-width: 600px) {
+        height: $cellSize-sm;
+        width: $cellSize-sm;
+    }
 }
 
 i {
     background-image: url("../images/arrow.png");
     background-size: cover;
-    height: 50px;
-    width: 50px;
+    height: $cellSize;
+    width: $cellSize;
+
+    @media screen and (max-width: 600px) {
+        height: $cellSize-sm;
+        width: $cellSize-sm;
+    }
 }
