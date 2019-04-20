@@ -64,3 +64,4 @@ export function findDirection(clickedCord: DiamondCord, nearestDiamond: DiamondC
 
 export type DiamondCord = [number, number];
 export const BOARD_SIZE = 8;
+export const SAVED_GAME_ID = 'Diamond-Game-1';
