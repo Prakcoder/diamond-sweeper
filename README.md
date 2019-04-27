@@ -27,7 +27,9 @@ After you start the server it will automatically open the browser with `http://l
 
 ## Stackblitz url
 You can directly view or run the project online by the following link: 
-`https://stackblitz.com/github/Prakcoder/diamond-sweeper`
+`https://stackblitz.com/github/Prakcoder/diamond-sweeper`.
+
+*Note: Currently Stackblitz is not able to show images from current project, to see the project please run it on your local machine.
 
 ## Angular CLI
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
